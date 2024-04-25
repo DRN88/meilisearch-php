@@ -11,6 +11,7 @@ class FacetSearchQuery
     private ?array $filter = null;
     private ?string $facetQuery = null;
     private ?string $facetName = null;
+    private ?array $hybrid = null;
 
     public function setQuery(string $q): FacetSearchQuery
     {
@@ -47,6 +48,13 @@ class FacetSearchQuery
         return $this;
     }
 
+    public function setHybrid(array $hybrid): FacetSearchQuery
+    {
+        $this->hybrid = $hybrid;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         return array_filter([
@@ -55,6 +63,7 @@ class FacetSearchQuery
             'filter' => $this->filter,
             'facetQuery' => $this->facetQuery,
             'facetName' => $this->facetName,
+            'hybrid' => $this->hybrid,
         ], function ($item) { return null !== $item; });
     }
 }
